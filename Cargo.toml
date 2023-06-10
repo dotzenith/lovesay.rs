@@ -2,6 +2,9 @@
 name = "lovesay"
 version = "0.1.0"
 edition = "2021"
+description = "lovesay but rusty"
+repository = "https://github.com/dotzenith/lovesay.rs"
+license = "MIT"
 
 [dependencies]
 shellexpand = "3.0"
