@@ -26,7 +26,11 @@ fn main() {
     let empty_string = "".to_string();
     let mut printable_quotes: Vec<String> = vec![empty_string; 5];
     for (i, quote) in quote_vec.iter().enumerate() {
-        printable_quotes[i] = format!("{oneheart} {quote} {oneheart}");
+        if i < 5 {
+            printable_quotes[i] = format!("{oneheart} {quote} {oneheart}");
+        } else {
+            printable_quotes.push(format!("{oneheart} {quote} {oneheart}"));
+        }
     }
    
     // Heart
@@ -66,6 +70,10 @@ fn get_quote_vec(today_quote: String) -> Vec<String> {
         Some((width, _)) => width,
         None => 80,
     };
+    
+    if width < 25 {
+        return vec![]
+    }
 
     textwrap::wrap(&today_quote, width - 25)
         .iter()

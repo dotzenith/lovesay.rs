@@ -22,7 +22,7 @@
 
   lovesay.rs is a port of [lovesay](https://github.com/dotzenith/lovesay) in rust. It is a simple rust program that displays a quote from a loved one based on the day of the month or a quote passed in through the cli arguments. 
 
-  <img src="https://github.com/dotzenith/dotzenith/blob/main/assets/lovesay/lovesay.gif" alt="lovesay gif">
+  <img src="https://github.com/dotzenith/dotzenith/blob/main/assets/lovesayrs/lovesay.png" alt="lovesay crab">
 
 ---
 
@@ -87,7 +87,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.1.0 - It's rust time
+0.1.0 - Add checks for small terminal
 
 ---
 
