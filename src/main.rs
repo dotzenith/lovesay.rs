@@ -5,7 +5,14 @@ use textwrap;
 use term_size;
 
 fn main() {
-    let quote_vec = get_quote_vec();
+    let argv: Vec<_> = env::args().map(|v| v.to_owned()).collect();
+    let today_quote: String = match argv.len() > 1 {
+        true => {
+            argv[1..].join(" ")
+        },
+        false => get_todays_quote()
+    };
+    let quote_vec = get_quote_vec(today_quote);
 
     // Hearts
     let oneheart: String = "[38;2;243;139;168m\u{f004}[0m".to_string();
@@ -54,8 +61,7 @@ fn get_todays_quote() -> String {
     }
 }
 
-fn get_quote_vec() -> Vec<String> {
-    let today_quote = get_todays_quote();
+fn get_quote_vec(today_quote: String) -> Vec<String> {
     let width = match term_size::dimensions() {
         Some((width, _)) => width,
         None => 80,
