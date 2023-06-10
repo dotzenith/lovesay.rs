@@ -87,7 +87,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.1.1 - It's rust time
+0.1.0 - It's rust time
 
 ---
 
