@@ -87,7 +87,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.1.0 - Add checks for small terminal
+0.1.1 - Add checks for small terminal
 
 ---
 
