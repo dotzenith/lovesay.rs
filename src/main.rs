@@ -4,6 +4,33 @@ use chrono::Datelike;
 use textwrap;
 use term_size;
 
+fn main() {
+    let quote_vec = get_quote_vec();
+
+    // Hearts
+    let oneheart: String = "[38;2;243;139;168m\u{f004}[0m".to_string();
+    let twoheart: String = "[38;2;203;166;247m\u{f004}[0m".to_string();
+    let threeheart: String = "[38;2;137;180;250m\u{f004}[0m".to_string();
+    let fourheart: String = "[38;2;166;227;161m\u{f004}[0m".to_string();
+    let fiveheart: String = "[38;2;250;179;135m\u{f004}[0m".to_string();
+    let sixheart: String = "[38;2;249;226;175m\u{f004}[0m".to_string();
+
+    // Quote lines
+    let empty_string = "".to_string();
+    let mut printable_quotes: Vec<String> = vec![empty_string; 5];
+    for (i, quote) in quote_vec.iter().enumerate() {
+        printable_quotes[i] = format!("{oneheart} {quote} {oneheart}");
+    }
+   
+    // Heart
+    println!("   {oneheart} {oneheart}   {oneheart} {oneheart}   ");
+    println!(" {twoheart}     {twoheart}     {twoheart}      {}", printable_quotes[0]);
+    println!(" {threeheart}           {threeheart}      {}", printable_quotes[1]);
+    println!("   {fourheart}       {fourheart}        {}", printable_quotes[2]);
+    println!("     {fiveheart}   {fiveheart}          {}", printable_quotes[3]);
+    println!("       {sixheart}            {}", printable_quotes[4]);
+}
+
 fn get_quotes(path: &str) -> Vec<String> {
 
     fs::read_to_string(shellexpand::tilde(path).to_string())
@@ -21,9 +48,9 @@ fn get_todays_quote() -> String {
     };
     let quotes = get_quotes(&quotes_path);
 
-    match quotes.get(today as usize) {
-        Some(str) => String::from(str),
-        None => String::from("No quotes for today"),
+    match quotes.get(today as usize - 1) {
+        Some(str) => str.to_string(),
+        None => "No quotes for today".to_string(),
     }
 }
 
@@ -38,10 +65,4 @@ fn get_quote_vec() -> Vec<String> {
         .iter()
         .map(|line| line.to_string())
         .collect()
-}
-
-fn main() {
-    let quote_vec = get_quote_vec();
-
-    println!("{:?}", quote_vec);
 }
