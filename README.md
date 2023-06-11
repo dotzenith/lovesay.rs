@@ -72,6 +72,17 @@ if you'd like to use a quotes stored somewhere other than the path above, the `L
 export LOVESAY_PATH="~/path/to/file"
 ```
 
+lovesay also supports pipes
+
+```sh
+lovesay | lolcat                    # pipe output to lolcat
+
+echo something | lovesay            # take input from another command
+
+echo something | lovesay | lolcat   # combine the two
+```
+
+
 ---
 
 ### ❖ About lovesay
@@ -87,7 +98,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.1.1 - Add checks for small terminal
+0.2.0 - Add support for pipes
 
 ---
 
