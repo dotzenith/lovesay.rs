@@ -1,17 +1,12 @@
-use std::{fs, env};
-use shellexpand;
+use atty::Stream;
 use chrono::Datelike;
-use textwrap;
+use shellexpand;
+use std::{env, fs, io};
 use term_size;
+use textwrap;
 
 fn main() {
-    let argv: Vec<_> = env::args().map(|v| v.to_owned()).collect();
-    let today_quote: String = match argv.len() > 1 {
-        true => {
-            argv[1..].join(" ")
-        },
-        false => get_todays_quote()
-    };
+    let today_quote = get_todays_quote();
     let quote_vec = get_quote_vec(today_quote);
 
     // Hearts
@@ -32,7 +27,7 @@ fn main() {
             printable_quotes.push(format!("{oneheart} {quote} {oneheart}"));
         }
     }
-   
+
     // Heart
     println!("   {oneheart} {oneheart}   {oneheart} {oneheart}   ");
     println!(" {twoheart}     {twoheart}     {twoheart}      {}", printable_quotes[0]);
@@ -43,15 +38,29 @@ fn main() {
 }
 
 fn get_quotes(path: &str) -> Vec<String> {
-
     fs::read_to_string(shellexpand::tilde(path).to_string())
-        .unwrap_or("No quotes file found".to_string()).lines()
+        .unwrap_or("No quotes file found".to_string())
+        .lines()
         .map(|str| str.to_string())
         .collect()
-
 }
 
 fn get_todays_quote() -> String {
+    if atty::is(Stream::Stdin) {
+        let argv: Vec<_> = env::args().map(|v| v.to_owned()).collect();
+        match argv.len() > 1 {
+            true => argv[1..].join(" "),
+            false => get_todays_quote_from_file(),
+        }
+    } else {
+        io::read_to_string(io::stdin())
+            .unwrap_or("Couldn't read from stdin".to_string())
+            .trim_end()
+            .to_string()
+    }
+}
+
+fn get_todays_quote_from_file() -> String {
     let today = chrono::offset::Local::now().day();
     let quotes_path = match env::var("LOVESAY_PATH") {
         Ok(str) => str.to_string(),
@@ -70,9 +79,9 @@ fn get_quote_vec(today_quote: String) -> Vec<String> {
         Some((width, _)) => width,
         None => 80,
     };
-    
+
     if width < 25 {
-        return vec![]
+        return vec![];
     }
 
     textwrap::wrap(&today_quote, width - 25)
