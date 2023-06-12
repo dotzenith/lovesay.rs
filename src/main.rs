@@ -6,16 +6,24 @@ use term_size;
 use textwrap;
 
 fn main() {
-    let today_quote = get_todays_quote();
+    let mut heart = "\u{f004}";
+
+    let mut argv: Vec<String> = env::args().map(|v| v.to_owned()).collect();
+    if argv.len() > 1 && argv.get(1).unwrap() == "--no-nerd" {
+        heart = "\u{2665}";
+        argv.remove(1);
+    }
+
+    let today_quote = get_todays_quote(argv);
     let quote_vec = get_quote_vec(today_quote);
 
     // Hearts
-    let oneheart: String = "[38;2;243;139;168m\u{f004}[0m".to_string();
-    let twoheart: String = "[38;2;203;166;247m\u{f004}[0m".to_string();
-    let threeheart: String = "[38;2;137;180;250m\u{f004}[0m".to_string();
-    let fourheart: String = "[38;2;166;227;161m\u{f004}[0m".to_string();
-    let fiveheart: String = "[38;2;250;179;135m\u{f004}[0m".to_string();
-    let sixheart: String = "[38;2;249;226;175m\u{f004}[0m".to_string();
+    let oneheart: String = format!("[38;2;243;139;168m{heart}[0m");
+    let twoheart: String = format!("[38;2;203;166;247m{heart}[0m");
+    let threeheart: String = format!("[38;2;137;180;250m{heart}[0m");
+    let fourheart: String = format!("[38;2;166;227;161m{heart}[0m");
+    let fiveheart: String = format!("[38;2;250;179;135m{heart}[0m");
+    let sixheart: String = format!("[38;2;249;226;175m{heart}[0m");
 
     // Quote lines
     let empty_string = "".to_string();
@@ -37,17 +45,8 @@ fn main() {
     println!("       {sixheart}            {}", printable_quotes[4]);
 }
 
-fn get_quotes(path: &str) -> Vec<String> {
-    fs::read_to_string(shellexpand::tilde(path).to_string())
-        .unwrap_or("No quotes file found".to_string())
-        .lines()
-        .map(|str| str.to_string())
-        .collect()
-}
-
-fn get_todays_quote() -> String {
+fn get_todays_quote(argv: Vec<String>) -> String {
     if atty::is(Stream::Stdin) {
-        let argv: Vec<_> = env::args().map(|v| v.to_owned()).collect();
         match argv.len() > 1 {
             true => argv[1..].join(" "),
             false => get_todays_quote_from_file(),
@@ -66,7 +65,12 @@ fn get_todays_quote_from_file() -> String {
         Ok(str) => str.to_string(),
         Err(_) => "~/.config/lovesay/quotes".to_string(),
     };
-    let quotes = get_quotes(&quotes_path);
+
+    let quotes: Vec<String> = fs::read_to_string(shellexpand::tilde(&quotes_path).to_string())
+        .unwrap_or("No quotes file found".to_string())
+        .lines()
+        .map(|str| str.to_string())
+        .collect();
 
     match quotes.get(today as usize - 1) {
         Some(str) => str.to_string(),

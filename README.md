@@ -60,6 +60,12 @@ lovesay can be used in a similar fashion to cowsay
 lovesay Hello World
 ```
 
+if you're not using a nerd-font, be sure to call lovesay with the `--no-nerd` flag
+```sh
+lovesay --no-nerd hello world
+```
+> NOTE: `--no-nerd` has to be the first argument if you're using it because I didn't feel like implementing a proper CLI interface yet
+
 if there's a `quotes` file in `$HOME/.config/lovesay/`, lovesay can be used without any arguments
 
 ```sh
@@ -98,7 +104,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.2.0 - Add support for pipes
+0.3.0 - Stop discriminating against non-nerds
 
 ---
 
