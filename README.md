@@ -38,7 +38,7 @@ Note: These requirements only apply if using you're using lovesay to print a dif
 
 ### ❖ Installation
 
-> Install from pip
+> Install from cargo
 ```sh
 cargo install lovesay
 ```
@@ -54,31 +54,33 @@ cargo build --release
 
 ### ❖ Usage 
 
-lovesay can be used in a similar fashion to cowsay
+#### lovesay can be used in a similar fashion to cowsay
 
 ```sh
 lovesay Hello World
 ```
 
-if you're not using a nerd-font, be sure to call lovesay with the `--no-nerd` flag
-```sh
-lovesay --no-nerd hello world
-```
-> NOTE: `--no-nerd` has to be the first argument if you're using it because I didn't feel like implementing a proper CLI interface yet
-
-if there's a `quotes` file in `$HOME/.config/lovesay/`, lovesay can be used without any arguments
+#### if there's a `quotes` file in `$HOME/.config/lovesay/`, lovesay can be used without any arguments
 
 ```sh
 lovesay
 ```
 
-if you'd like to use a quotes stored somewhere other than the path above, the `LOVESAY_PATH` env variable can be used as such
+#### if you'd like to use a quotes stored somewhere other than the path above, the `LOVESAY_PATH` env variable can be used as such
 
 ```sh
 export LOVESAY_PATH="~/path/to/file"
 ```
 
-lovesay also supports pipes
+#### lovesay also supports two other environment variables
+
+```sh
+export LOVESAY_NO_NERD=1          # Set if your terminal does not use a nerd font (can be set to anything, lovesay just checks for existence)
+
+export LOVESAY_MAX_WIDTH=80     # Override the width lovesay will use to wrap a quote
+```
+
+#### lovesay has support for pipes as well
 
 ```sh
 lovesay | lolcat                    # pipe output to lolcat
@@ -88,6 +90,7 @@ echo something | lovesay            # take input from another command
 echo something | lovesay | lolcat   # combine the two
 ```
 
+#### Note: lovesay uses catppuccin mocha as it's only theme for now but there are plans to add more
 
 ---
 
@@ -104,7 +107,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.3.0 - Stop discriminating against non-nerds
+0.3.0 - Use environment variables and allow more than 5 lines for a quote
 
 ---
 

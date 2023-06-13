@@ -6,15 +6,12 @@ use term_size;
 use textwrap;
 
 fn main() {
-    let mut heart = "\u{f004}";
+    let heart = match env::var("LOVESAY_NO_NERD") {
+        Ok(_) => "\u{2665}",
+        Err(_) => "\u{f004}",
+    };
 
-    let mut argv: Vec<String> = env::args().map(|v| v.to_owned()).collect();
-    if argv.len() > 1 && argv.get(1).unwrap() == "--no-nerd" {
-        heart = "\u{2665}";
-        argv.remove(1);
-    }
-
-    let today_quote = get_todays_quote(argv);
+    let today_quote = get_todays_quote();
     let quote_vec = get_quote_vec(today_quote);
 
     // Hearts
@@ -43,10 +40,16 @@ fn main() {
     println!("   {fourheart}       {fourheart}        {}", printable_quotes[2]);
     println!("     {fiveheart}   {fiveheart}          {}", printable_quotes[3]);
     println!("       {sixheart}            {}", printable_quotes[4]);
+
+    for quote in quote_vec.iter().skip(5) {
+        println!("                    {oneheart} {quote} {oneheart}");
+    }
 }
 
-fn get_todays_quote(argv: Vec<String>) -> String {
+fn get_todays_quote() -> String {
+
     if atty::is(Stream::Stdin) {
+        let argv: Vec<String> = env::args().map(|v| v.to_owned()).collect();
         match argv.len() > 1 {
             true => argv[1..].join(" "),
             false => get_todays_quote_from_file(),
@@ -79,10 +82,15 @@ fn get_todays_quote_from_file() -> String {
 }
 
 fn get_quote_vec(today_quote: String) -> Vec<String> {
-    let width = match term_size::dimensions() {
+    let mut width: usize = match term_size::dimensions() {
         Some((width, _)) => width,
         None => 80,
     };
+
+    match env::var("LOVESAY_MAX_WIDTH") {
+        Ok(w) => width = w.parse().unwrap_or(80),
+        Err(_) => (),
+    }
 
     if width < 25 {
         return vec![];
