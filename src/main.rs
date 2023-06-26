@@ -47,16 +47,15 @@ fn main() {
 }
 
 fn get_todays_quote() -> String {
-
     if atty::is(Stream::Stdin) {
-        let argv: Vec<String> = env::args().map(|v| v.to_owned()).collect();
-        match argv.len() > 1 {
-            true => argv[1..].join(" "),
+        let argv: Vec<String> = env::args().skip(1).map(|v| v.to_string()).collect();
+        match argv.len() > 0 {
+            true => argv.join(" "),
             false => get_todays_quote_from_file(),
         }
     } else {
         io::read_to_string(io::stdin())
-            .unwrap_or("Couldn't read from stdin".to_string())
+            .unwrap_or_else(|_| "Couldn't read from stdin".to_string())
             .trim_end()
             .to_string()
     }
@@ -65,15 +64,14 @@ fn get_todays_quote() -> String {
 fn get_todays_quote_from_file() -> String {
     let today = chrono::offset::Local::now().day();
     let quotes_path = match env::var("LOVESAY_PATH") {
-        Ok(str) => str.to_string(),
+        Ok(str) => str,
         Err(_) => "~/.config/lovesay/quotes".to_string(),
     };
 
-    let quotes: Vec<String> = fs::read_to_string(shellexpand::tilde(&quotes_path).to_string())
-        .unwrap_or("No quotes file found".to_string())
-        .lines()
-        .map(|str| str.to_string())
-        .collect();
+    let quotes: Vec<String> = match fs::read_to_string(shellexpand::tilde(&quotes_path).as_ref()) {
+        Ok(ret) => ret.lines().map(|str| str.to_string()).collect(),
+        Err(_) => return "No quotes file found".to_string(),
+    };
 
     match quotes.get(today as usize - 1) {
         Some(str) => str.to_string(),

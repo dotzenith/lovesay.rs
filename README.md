@@ -107,7 +107,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.3.0 - Use environment variables and allow more than 5 lines for a quote
+0.4.1 - Minor logic updates
 
 ---
 
