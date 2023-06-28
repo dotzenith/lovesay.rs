@@ -72,10 +72,27 @@ lovesay
 export LOVESAY_PATH="~/path/to/file"
 ```
 
+#### colorschemes can be set using the `LOVESAY_COLORSCHEME` env variable
+
+```sh
+export LOVESAY_COLORSCHEME=nord         # "catppuccin mocha" by default
+```
+
+The available colorschemes are as follows: 
+- [catppuccin](https://github.com/catppuccin) - latte, frappe, macchiato, mocha
+- [nord](https://github.com/arcticicestudio/nord)
+- [dracula](https://github.com/dracula/dracula-theme)
+- [gruvbox](https://github.com/morhetz/gruvbox)
+- [onedark](https://github.com/joshdick/onedark.vim)
+- [tokyonight](https://github.com/folke/tokyonight.nvim)
+- [ayu](https://github.com/ayu-theme)
+- [palenight](https://github.com/drewtempelmeyer/palenight.vim)
+- [gogh](https://github.com/Mayccoll/Gogh)
+
 #### lovesay also supports two other environment variables
 
 ```sh
-export LOVESAY_NO_NERD=1          # Set if your terminal does not use a nerd font (can be set to anything, lovesay just checks for existence)
+export LOVESAY_NO_NERD=1        # Set if your terminal does not use a nerd font (can be set to anything, lovesay just checks for existence)
 
 export LOVESAY_MAX_WIDTH=80     # Override the width lovesay will use to wrap a quote
 ```
@@ -89,8 +106,6 @@ echo something | lovesay            # take input from another command
 
 echo something | lovesay | lolcat   # combine the two
 ```
-
-#### Note: lovesay uses catppuccin mocha as it's only theme for now but there are plans to add more
 
 ---
 
@@ -107,7 +122,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.4.1 - Minor logic updates
+0.5.0 - Add colorschemes
 
 ---
 
