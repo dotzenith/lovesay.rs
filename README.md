@@ -60,7 +60,7 @@ cargo build --release
 lovesay Hello World
 ```
 
-#### if there's a `quotes` file in `$HOME/.config/lovesay/`, lovesay can be used without any arguments
+#### if there's a `quotes` file in `~/.config/lovesay/`, lovesay can be used without any arguments
 
 ```sh
 lovesay
