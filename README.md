@@ -22,7 +22,7 @@
 
   lovesay.rs is a port of [lovesay](https://github.com/dotzenith/lovesay) in rust. It is a simple rust program that displays a quote from a loved one based on the day of the month or a quote passed in through the cli arguments. 
 
-  <img src="https://github.com/dotzenith/dotzenith/blob/main/assets/lovesayrs/lovesay.png" alt="lovesay crab">
+  <img src="https://github.com/dotzenith/dotzenith/blob/main/assets/lovesayrs/lovesay.gif" alt="lovesay output in different colorschemes">
 
 ---
 
@@ -30,7 +30,7 @@
 
 Note: These requirements only apply if using you're using lovesay to print a different quote for each day of the month.  
 
-- A quotes file stored in `$HOME/.config/lovesay/`
+- A quotes file stored in `~/.config/lovesay/`
 - Each quote must be on a new line, see the example quotes file in `.example/quotes`
 - (optional) A partner to write you 31 lines full of love, one for each day of the month
 
