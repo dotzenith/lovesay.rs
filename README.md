@@ -122,7 +122,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.5.0 - Add colorschemes
+0.5.1 - Minor logic changes
 
 ---
 

@@ -20,34 +20,33 @@ fn main() {
     let today_quote = get_todays_quote();
     let quote_vec = get_quote_vec(today_quote);
 
-    // Hearts
-    let oneheart: String = kolor.red(heart);
-    let twoheart: String = kolor.purple(heart);
-    let threeheart: String = kolor.blue(heart);
-    let fourheart: String = kolor.green(heart);
-    let fiveheart: String = kolor.orange(heart);
-    let sixheart: String = kolor.yellow(heart);
+    let hearts = (
+        kolor.red(heart),
+        kolor.purple(heart),
+        kolor.blue(heart),
+        kolor.green(heart),
+        kolor.orange(heart),
+        kolor.yellow(heart),
+    );
 
-    // Quote lines
     let mut printable_quotes: Vec<String> = vec![String::new(); 5];
     for (i, quote) in quote_vec.iter().enumerate() {
         if i < 5 {
-            printable_quotes[i] = format!("{} {} {}", oneheart, kolor.white(quote), oneheart);
+            printable_quotes[i] = format!("{} {} {}", hearts.0, kolor.white(quote), hearts.0);
         } else {
-            printable_quotes.push(format!("{} {} {}", oneheart, kolor.white(quote), oneheart));
+            printable_quotes.push(format!("{} {} {}", hearts.0, kolor.white(quote), hearts.0));
         }
     }
 
-    // Heart
-    println!("   {oneheart} {oneheart}   {oneheart} {oneheart}   ");
-    println!(" {twoheart}     {twoheart}     {twoheart}      {}", printable_quotes[0]);
-    println!(" {threeheart}           {threeheart}      {}", printable_quotes[1]);
-    println!("   {fourheart}       {fourheart}        {}", printable_quotes[2]);
-    println!("     {fiveheart}   {fiveheart}          {}", printable_quotes[3]);
-    println!("       {sixheart}            {}", printable_quotes[4]);
+    println!("   {} {}   {} {}   ", hearts.0, hearts.0, hearts.0, hearts.0);
+    println!(" {}     {}     {}      {}", hearts.1, hearts.1, hearts.1, printable_quotes[0]);
+    println!(" {}           {}      {}", hearts.2, hearts.2, printable_quotes[1]);
+    println!("   {}       {}        {}", hearts.3, hearts.3, printable_quotes[2]);
+    println!("     {}   {}          {}", hearts.4, hearts.4, printable_quotes[3]);
+    println!("       {}            {}", hearts.5, printable_quotes[4]);
 
     for quote in quote_vec.iter().skip(5) {
-        println!("                    {} {} {}", oneheart, kolor.white(quote), oneheart);
+        println!("                    {} {} {}", hearts.0, kolor.white(quote), hearts.0);
     }
 }
 
@@ -85,15 +84,13 @@ fn get_todays_quote_from_file() -> String {
 }
 
 fn get_quote_vec(today_quote: String) -> Vec<String> {
-    let mut width: usize = match term_size::dimensions() {
-        Some((width, _)) => width,
-        None => 80,
-    };
+    let max_width = env::var("LOVESAY_MAX_WIDTH")
+        .ok()
+        .and_then(|s| s.parse::<usize>().ok());
+    let term_width = term_size::dimensions().map(|(w, _)| w);
+    let default_width = Some(80);
 
-    match env::var("LOVESAY_MAX_WIDTH") {
-        Ok(w) => width = w.parse().unwrap_or(80),
-        Err(_) => (),
-    }
+    let width = max_width.or(term_width).or(default_width).unwrap();
 
     if width < 25 {
         return vec![];
