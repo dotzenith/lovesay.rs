@@ -38,6 +38,8 @@ Note: These requirements only apply if using you're using lovesay to print a dif
 
 ### ❖ Installation
 
+Snag a binary from the [Releases](https://github.com/dotzenith/lovesay.rs/releases) if your supported platform is there, otherwise use one of the following methods:
+
 > Install from cargo
 ```sh
 cargo install lovesay
