@@ -32,9 +32,9 @@ fn main() {
     let mut printable_quotes: Vec<String> = vec![String::new(); 5];
     for (i, quote) in quote_vec.iter().enumerate() {
         if i < 5 {
-            printable_quotes[i] = format!("{} {} {}", hearts.0, kolor.white(quote), hearts.0);
+            printable_quotes[i] = format!("{} {} {}", hearts.0, kolor.text(quote), hearts.0);
         } else {
-            printable_quotes.push(format!("{} {} {}", hearts.0, kolor.white(quote), hearts.0));
+            printable_quotes.push(format!("{} {} {}", hearts.0, kolor.text(quote), hearts.0));
         }
     }
 
@@ -46,7 +46,7 @@ fn main() {
     println!("       {}            {}", hearts.5, printable_quotes[4]);
 
     for quote in quote_vec.iter().skip(5) {
-        println!("                    {} {} {}", hearts.0, kolor.white(quote), hearts.0);
+        println!("                    {} {} {}", hearts.0, kolor.text(quote), hearts.0);
     }
 }
 
