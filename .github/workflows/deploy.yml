@@ -23,9 +23,12 @@ jobs:
           - build: linux-arm
             os: ubuntu-latest
             target: arm-unknown-linux-gnueabihf
-          - build: macos
+          - build: macos-amd64
             os: macos-latest
             target: x86_64-apple-darwin
+          - build: macos-arm64
+            os: macos-latest
+            target: aarch64-apple-darwin
 
     steps:
       - name: Checkout
