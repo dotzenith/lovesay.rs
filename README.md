@@ -38,14 +38,22 @@ Note: These requirements only apply if using you're using lovesay to print a dif
 
 ### ❖ Installation
 
-Snag a binary from the [Releases](https://github.com/dotzenith/lovesay.rs/releases) if your supported platform is there, otherwise use one of the following methods:
+#### Brew
+```sh
+brew tap dotzenith/tap
+brew install lovesay
+```
 
+#### Binaries
+Pre-Compiled binaries for linux and mac are available in [Releases](https://github.com/dotzenith/lovesay.rs/releases)
+
+#### Cargo
 > Install from cargo
 ```sh
 cargo install lovesay
 ```
 
-> Install from source
+#### Source
 - First, install [rust](https://rustup.rs/)
 ```sh
 git clone https://github.com/dotzenith/lovesay.rs.git
