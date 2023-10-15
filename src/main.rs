@@ -13,7 +13,7 @@ fn main() {
     };
 
     let kolor = match env::var("LOVESAY_COLORSCHEME") {
-        Ok(str) => Kolor::new(&str),
+        Ok(str) => Kolor::new(str.as_str()),
         Err(_) => Kolor::new(""),
     };
 

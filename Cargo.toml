@@ -1,6 +1,6 @@
 [package]
 name = "lovesay"
-version = "0.5.2"
+version = "0.5.3"
 edition = "2021"
 description = "lovesay but rusty"
 repository = "https://github.com/dotzenith/lovesay.rs"
@@ -12,4 +12,4 @@ chrono = "0.4.26"
 textwrap = "0.16.0"
 term_size = "0.3.2"
 atty = "0.2.14"
-kolorz = "0.4.0"
+kolorz = "0.5.0"

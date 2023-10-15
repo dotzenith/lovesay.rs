@@ -132,7 +132,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.5.2 - Change kolorz dependency version and update code to support the new changes
+0.5.3 - Change kolorz dependency version and update code to support the new changes
 
 ---
 
