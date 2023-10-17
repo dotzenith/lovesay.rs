@@ -89,15 +89,22 @@ export LOVESAY_COLORSCHEME=nord         # "catppuccin mocha" by default
 ```
 
 The available colorschemes are as follows: 
-- [catppuccin](https://github.com/catppuccin) - latte, frappe, macchiato, mocha
-- [nord](https://github.com/arcticicestudio/nord)
-- [dracula](https://github.com/dracula/dracula-theme)
-- [gruvbox](https://github.com/morhetz/gruvbox)
-- [onedark](https://github.com/joshdick/onedark.vim)
-- [tokyonight](https://github.com/folke/tokyonight.nvim)
-- [ayu](https://github.com/ayu-theme)
-- [palenight](https://github.com/drewtempelmeyer/palenight.vim)
-- [gogh](https://github.com/Mayccoll/Gogh)
+
+- catppuccin latte
+- catppuccin frappe
+- catppuccin macchiato
+- catppuccin mocha
+- dracula
+- nord
+- gruvbox dark
+- gruvbox light
+- onedark
+- tokyonight
+- ayu
+- palenight
+- gogh
+- biscuit dark
+- biscuit light
 
 #### lovesay also supports two other environment variables
 
