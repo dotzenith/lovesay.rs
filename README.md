@@ -139,7 +139,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.5.4 - Add gruvbox dark/light and biscuit dark/light
+0.5.5 - Manage releases using cargo-dist
 
 ---
 
