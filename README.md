@@ -38,20 +38,25 @@ Note: These requirements only apply if using you're using lovesay to print a dif
 
 ### ❖ Installation
 
+#### Shell
+```sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dotzenith/lovesay.rs/releases/latest/download/lovesay-installer.sh | sh
+```
+
 #### Brew
 ```sh
 brew tap dotzenith/tap
 brew install lovesay
 ```
 
-#### Binaries
-Pre-Compiled binaries for linux and mac are available in [Releases](https://github.com/dotzenith/lovesay.rs/releases)
-
 #### Cargo
 > Install from cargo
 ```sh
 cargo install lovesay
 ```
+
+#### Binaries
+Pre-Compiled binaries for linux and mac are available in [Releases](https://github.com/dotzenith/lovesay.rs/releases)
 
 #### Source
 - First, install [rust](https://rustup.rs/)
