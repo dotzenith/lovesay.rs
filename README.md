@@ -50,7 +50,6 @@ brew install lovesay
 ```
 
 #### Cargo
-> Install from cargo
 ```sh
 cargo install lovesay
 ```
