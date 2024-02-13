@@ -49,13 +49,18 @@ brew tap dotzenith/tap
 brew install lovesay
 ```
 
+#### Powershell
+```sh
+irm https://github.com/dotzenith/lovesay.rs/releases/latest/download/lovesay-installer.ps1 | iex
+```
+
 #### Cargo
 ```sh
 cargo install lovesay
 ```
 
 #### Binaries
-Pre-Compiled binaries for linux and mac are available in [Releases](https://github.com/dotzenith/lovesay.rs/releases)
+Pre-Compiled binaries for linux, mac, and windows are available in [Releases](https://github.com/dotzenith/lovesay.rs/releases)
 
 #### Source
 - First, install [rust](https://rustup.rs/)
