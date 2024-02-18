@@ -1,6 +1,6 @@
 [package]
 name = "lovesay"
-version = "0.5.7"
+version = "0.6.0"
 edition = "2021"
 description = "lovesay but rusty"
 repository = "https://github.com/dotzenith/lovesay.rs"
@@ -13,6 +13,7 @@ textwrap = "0.16.0"
 term_size = "0.3.2"
 atty = "0.2.14"
 kolorz = "0.6.0"
+clap = { version = "4.4.9", features = ["cargo"] }
 
 # The profile that 'cargo dist' will build with
 [profile.dist]

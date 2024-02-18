@@ -1,5 +1,6 @@
 use atty::Stream;
 use chrono::Datelike;
+use clap::{arg, command, ArgMatches};
 use kolorz::Kolor;
 use shellexpand;
 use std::{env, fs, io};
@@ -17,7 +18,11 @@ fn main() {
         Err(_) => Kolor::new(""),
     };
 
-    let today_quote = get_todays_quote();
+    let matches = command!()
+        .arg(arg!([message]).trailing_var_arg(true).num_args(..))
+        .get_matches();
+
+    let today_quote = get_quote(matches);
     let quote_vec = get_quote_vec(today_quote);
 
     let hearts = (
@@ -50,12 +55,14 @@ fn main() {
     }
 }
 
-fn get_todays_quote() -> String {
+fn get_quote(matches: ArgMatches) -> String {
     if atty::is(Stream::Stdin) {
-        let argv: Vec<String> = env::args().skip(1).collect();
-        match argv.len() > 0 {
-            true => argv.join(" "),
-            false => get_todays_quote_from_file(),
+        match matches.get_many::<String>("message") {
+            Some(messages) => messages
+                .map(|val| val.to_owned())
+                .collect::<Vec<_>>()
+                .join(" "),
+            None => get_todays_quote_from_file(),
         }
     } else {
         io::read_to_string(io::stdin())
