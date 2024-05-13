@@ -3,6 +3,7 @@ name = "lovesay"
 version = "0.6.0"
 edition = "2021"
 description = "lovesay but rusty"
+homepage = "https://github.com/dotzenith/lovesay.rs"
 repository = "https://github.com/dotzenith/lovesay.rs"
 license = "MIT"
 
@@ -23,9 +24,9 @@ lto = "thin"
 # Config for 'cargo dist'
 [workspace.metadata.dist]
 # The preferred cargo-dist version to use in CI (Cargo.toml SemVer syntax)
-cargo-dist-version = "0.10.0"
+cargo-dist-version = "0.14.1"
 # CI backends to support
-ci = ["github"]
+ci = "github"
 # The installers to generate for each app
 installers = ["shell", "powershell", "homebrew"]
 # A GitHub repo to push Homebrew formulas to
@@ -36,6 +37,8 @@ targets = ["aarch64-apple-darwin", "aarch64-unknown-linux-gnu", "aarch64-unknown
 publish-jobs = ["homebrew"]
 # Publish jobs to run in CI
 pr-run-mode = "skip"
+# Whether to install an updater program
+install-updater = false
 
 [workspace.metadata.dist.github-custom-runners]
 aarch64-unknown-linux-gnu = "buildjet-2vcpu-ubuntu-2204-arm"
