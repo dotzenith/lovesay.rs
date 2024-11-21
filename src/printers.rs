@@ -33,13 +33,13 @@ pub fn print_with_colored(heart: &str, quotes: &Vec<String>) -> () {
 }
 
 fn common_printer<T: Display, U: Display>(hearts: [T; 6], quotes: &[U]) {
-    let mut printable_quotes: Vec<String> = vec![String::new(); 5];
-    for (i, quote) in quotes.iter().enumerate() {
-        if i < 5 {
-            printable_quotes[i] = format!("{} {} {}", hearts[0], quote, hearts[0]);
-        } else {
-            printable_quotes.push(format!("{} {} {}", hearts[0], quote, hearts[0]));
-        }
+    let mut printable_quotes: Vec<String> = quotes
+        .iter()
+        .map(|quote| format!("{} {} {}", hearts[0], quote, hearts[0]))
+        .collect();
+
+    while printable_quotes.len() < 5 {
+        printable_quotes.push(String::from(""));
     }
 
     println!("   {} {}   {} {}   ", hearts[0], hearts[0], hearts[0], hearts[0]);
