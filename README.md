@@ -94,7 +94,7 @@ export LOVESAY_PATH="~/path/to/file"
 #### Colorschemes
 
 lovesay uses your terminal's colorscheme by default, but
-other colorschemes can be set using the `LOVESAY_COLORSCHEME` env variable
+other colorschemes can be set using an env variable
 
 ```sh
 export LOVESAY_COLORSCHEME=nord # uses catppuccin mocha by default if this is left blank or malformed
@@ -140,7 +140,7 @@ echo something | lovesay | lolcat   # combine the two
 
 ### ❖ About lovesay
 
-This is just a silly little rust port, but the reasoning for the original is below:
+While this rust port has grown up to be the main version, the reasoning for the original is below:
 
 I wrote lovesay because I got tired of seeing neofetch or pfetch every time I opened my terminal. I wanted something more personal. 
 
