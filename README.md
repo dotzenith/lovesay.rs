@@ -91,10 +91,13 @@ lovesay
 export LOVESAY_PATH="~/path/to/file"
 ```
 
-#### colorschemes can be set using the `LOVESAY_COLORSCHEME` env variable
+#### Colorschemes
+
+lovesay uses your terminal's colorscheme by default, but
+other colorschemes can be set using the `LOVESAY_COLORSCHEME` env variable
 
 ```sh
-export LOVESAY_COLORSCHEME=nord         # "catppuccin mocha" by default
+export LOVESAY_COLORSCHEME=nord # uses catppuccin mocha by default if this is left blank or malformed
 ```
 
 The available colorschemes are as follows: 
@@ -148,7 +151,8 @@ I hope that someone else finds a use for this little script as well. Love is a w
 ---
 
 ### ❖ What's New? 
-0.6.1 - Add `--version` and `--help` flags
+
+1.0.0 - Stabilize printing with terminal colors by default
 
 ---
 

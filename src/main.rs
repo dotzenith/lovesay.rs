@@ -1,21 +1,17 @@
-use atty::Stream;
 use chrono::Datelike;
 use clap::{arg, command, ArgMatches};
-use kolorz::Kolor;
 use shellexpand;
-use std::{env, fs, io};
+use std::io::{self, IsTerminal};
+use std::{env, fs};
 use term_size;
 use textwrap;
+
+mod printers;
 
 fn main() {
     let heart = match env::var("LOVESAY_NO_NERD") {
         Ok(_) => "\u{2665}",
         Err(_) => "\u{f004}",
-    };
-
-    let kolor = match env::var("LOVESAY_COLORSCHEME") {
-        Ok(str) => Kolor::new(str.as_str()),
-        Err(_) => Kolor::new(""),
     };
 
     let matches = command!()
@@ -25,38 +21,14 @@ fn main() {
     let today_quote = get_quote(matches);
     let quote_vec = get_quote_vec(today_quote);
 
-    let hearts = (
-        kolor.red(heart),
-        kolor.purple(heart),
-        kolor.blue(heart),
-        kolor.green(heart),
-        kolor.orange(heart),
-        kolor.yellow(heart),
-    );
-
-    let mut printable_quotes: Vec<String> = vec![String::new(); 5];
-    for (i, quote) in quote_vec.iter().enumerate() {
-        if i < 5 {
-            printable_quotes[i] = format!("{} {} {}", hearts.0, kolor.text(quote), hearts.0);
-        } else {
-            printable_quotes.push(format!("{} {} {}", hearts.0, kolor.text(quote), hearts.0));
-        }
-    }
-
-    println!("   {} {}   {} {}   ", hearts.0, hearts.0, hearts.0, hearts.0);
-    println!(" {}     {}     {}      {}", hearts.1, hearts.1, hearts.1, printable_quotes[0]);
-    println!(" {}           {}      {}", hearts.2, hearts.2, printable_quotes[1]);
-    println!("   {}       {}        {}", hearts.3, hearts.3, printable_quotes[2]);
-    println!("     {}   {}          {}", hearts.4, hearts.4, printable_quotes[3]);
-    println!("       {}            {}", hearts.5, printable_quotes[4]);
-
-    for quote in quote_vec.iter().skip(5) {
-        println!("                    {} {} {}", hearts.0, kolor.text(quote), hearts.0);
-    }
+    match env::var("LOVESAY_COLORSCHEME") {
+        Ok(str) => printers::print_with_kolorz(&str, heart, &quote_vec),
+        Err(_) => printers::print_with_colored(heart, &quote_vec),
+    };
 }
 
 fn get_quote(matches: ArgMatches) -> String {
-    if atty::is(Stream::Stdin) {
+    if io::stdin().is_terminal() {
         match matches.get_many::<String>("message") {
             Some(messages) => messages
                 .map(|val| val.to_owned())
