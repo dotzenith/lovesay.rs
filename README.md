@@ -45,13 +45,12 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dotzenith/lovesay.rs/re
 
 #### Brew
 ```sh
-brew tap dotzenith/tap
-brew install lovesay
+brew install dotzenith/tap/lovesay
 ```
 
 #### Powershell
 ```sh
-irm https://github.com/dotzenith/lovesay.rs/releases/latest/download/lovesay-installer.ps1 | iex
+powershell -ExecutionPolicy ByPass -c "irm https://github.com/dotzenith/lovesay.rs/releases/latest/download/lovesay-installer.ps1 | iex"
 ```
 
 #### Cargo
