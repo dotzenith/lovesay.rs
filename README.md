@@ -151,7 +151,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 
 ### ❖ What's New? 
 
-1.0.2 - Update Rust edition
+1.0.3 - Update dist and rust version
 
 ---
 
