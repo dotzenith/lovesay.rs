@@ -1,6 +1,6 @@
 [package]
 name = "lovesay"
-version = "1.0.3"
+version = "1.0.4"
 edition = "2024"
 description = "lovesay but rusty"
 homepage = "https://github.com/dotzenith/lovesay.rs"
