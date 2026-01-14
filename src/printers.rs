@@ -3,7 +3,7 @@ use kolorz::Kolor;
 use std::fmt::Display;
 
 pub fn print_with_kolorz(kolor: &str, heart: &str, quotes: &Vec<String>) -> () {
-    let kolor = Kolor::new(kolor);
+    let kolor = Kolor::new(kolor).expect("Invalid colorscheme");
 
     let hearts = [
         kolor.red(heart),
