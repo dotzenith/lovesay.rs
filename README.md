@@ -1,23 +1,5 @@
 <h2 align="center"> ━━━━━━  ❖  ━━━━━━ </h2>
 
-<!-- BADGES -->
-<div align="center">
-   <p></p>
-   
-   <img src="https://img.shields.io/github/stars/dotzenith/lovesay.rs?color=F8BD96&labelColor=302D41&style=for-the-badge">   
-
-   <img src="https://img.shields.io/github/forks/dotzenith/lovesay.rs?color=DDB6F2&labelColor=302D41&style=for-the-badge">   
-
-   <img src="https://img.shields.io/github/repo-size/dotzenith/lovesay.rs?color=ABE9B3&labelColor=302D41&style=for-the-badge">
-   
-   <img src="https://img.shields.io/github/commit-activity/y/dotzenith/lovesay.rs?color=96CDFB&labelColor=302D41&style=for-the-badge&label=COMMITS"/>
-   <br>
-</div>
-
-<p/>
-
----
-
 ### ❖ Information 
 
   lovesay.rs is a port of [lovesay](https://github.com/dotzenith/lovesay) in rust. It is a simple rust program that displays a quote from a loved one based on the day of the month or a quote passed in through the cli arguments. 
