@@ -1,6 +1,6 @@
 [package]
 name = "lovesay"
-version = "1.0.5"
+version = "1.0.6"
 edition = "2024"
 description = "lovesay but rusty"
 homepage = "https://github.com/dotzenith/lovesay.rs"
@@ -12,11 +12,15 @@ shellexpand = "3.0"
 chrono = "0.4.26"
 textwrap = "0.16.0"
 term_size = "0.3.2"
-kolorz = "1.0.0"
+kolorz = "1.1.0"
 clap = { version = "4.4.9", features = ["cargo"] }
 colored = "2.1.0"
+
+[profile.release]
+lto = "thin"
+panic = "abort"
+strip = true
 
 # The profile that 'cargo dist' will build with
 [profile.dist]
 inherits = "release"
-lto = "thin"
