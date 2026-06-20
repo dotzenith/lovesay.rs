@@ -125,7 +125,7 @@ While this rust port has grown up to be the main version, the reasoning for the 
 
 I wrote lovesay because I got tired of seeing neofetch or pfetch every time I opened my terminal. I wanted something more personal. 
 
-Seeing words full of love from my partner is a lot better than any other command I could possibly run. It makes my terminal feel cozy, welcoming, and as is the case with most things my partner touches, it makes my terminal feel like home. 
+Seeing words full of love from a loved one is a lot better than any other command I could possibly run. It can make my terminal feel cozy, welcoming, and as is the case with most things a loved one touches, it makes my terminal feel like home. 
 
 I hope that someone else finds a use for this little script as well. Love is a wonderful thing, and we could all use a little bit more of it in our lives (especially arch linux users)
 
@@ -133,7 +133,7 @@ I hope that someone else finds a use for this little script as well. Love is a w
 
 ### ❖ What's New? 
 
-1.0.7 - Bump cargo dist
+1.0.8 - Bump rust version
 
 ---
 
